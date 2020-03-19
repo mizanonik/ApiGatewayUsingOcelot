@@ -81,7 +81,38 @@ Open this folder on your IDE/Code Editor (For example, visual studio code)
 
 Now open CustomerApi project to launchSettings.json and set the applicationUrl port as 5001
 
-image
+```
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5001",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "CustomerApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "applicationUrl": "http://localhost:5001",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+```
 
 Then Create a class called customer
 
@@ -105,6 +136,17 @@ Create a controller called CustomerController
         return Ok(customers);
     }
 ```
+Then, run the application using command
+
+```
+dotnet run 
+```
+or
+```
+dotnet watch run
+```
+
+![customerapiresponse](https://github.com/mahedee/Articles/blob/master/img/CustomerApi_Response.png)
 
 #### OrderApi
 
@@ -114,7 +156,39 @@ dotnet new webapi -o OrderApi -n OrderApi
 
 open launchSettings.json, set the applicationUrl port as 5002
 
-image
+```
+{
+  "$schema": "http://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:5002",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "OrderApi": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "weatherforecast",
+      "applicationUrl": "http://localhost:5002",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
+
+```
 
 Then Create a class called Order
 
@@ -141,6 +215,18 @@ Create a controller called OrderController
         }
 ```
 
+Then, run the application using command
+
+```
+dotnet run 
+```
+or
+```
+dotnet watch run
+```
+
+![orderapiresponse](https://github.com/mahedee/Articles/blob/master/img/OrderApi_Response.png)
+
 ### Step 2
 
 Create api gateway
@@ -154,7 +240,7 @@ Add Ocelot to the project
 ```sh
 dotnet add package Ocelot
 ```
-Create a new json file in the project. For example, ocelot.json and add the following codes there
+Create a new json file in the project. For example, ocelot.json and add following codes there
 
 ```
 {
@@ -217,6 +303,20 @@ await app.UseOcelot();
 ```
 in Configure method
 
+Now, run the application using command
 
+```
+dotnet run 
+```
+or
+```
+dotnet watch run
+```
+
+![ocelot-customer](https://github.com/mahedee/Articles/blob/master/img/OcelotCustomer.png)
+
+![ocelot-order](https://github.com/mahedee/Articles/blob/master/img/Ocelot_Order.png)
+
+[Click here to get complete source code](https://github.com/mizanonik/ApiGatewayUsingOcelot)
 
 
